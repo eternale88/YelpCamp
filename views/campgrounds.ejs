@@ -12,16 +12,16 @@
   </header>
 
   <div class="row text-center" style="display:flex; flex-wrap:wrap;">
-      <% for(var i = 0; i < campGrounds.length; i++) { %>
+       <% campgrounds.forEach(function(campground){ %>
         <div class="col-md-3 col-sm-6">
           <div class="thumbnail">
-            <img src = <%= campGrounds[i]["image"] %> >
+            <img src = <%= campground.image %> >
             <div class="caption">
-              <h4><%= campGrounds[i]["name"] %> </h4>
+              <h4><%= campground.name %> </h4>
             </div>
           </div>
         </div>
-      <% } %>
+      <% }); %>
     </div>
 </div>
 
