@@ -18,7 +18,13 @@ var Campground = mongoose.model("Campground", campgroundSchema);
 //   {
 //     name: "Yosemite",
 //     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/YosemitePark2_amk.jpg/1280px-YosemitePark2_amk.jpg"
-//   }, function(err, campground){
+//   }, {name: "Ocean Beach", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Cliff_House_from_Ocean_Beach.jpg/350px-Cliff_House_from_Ocean_Beach.jpg"},
+//   {name: "Yosemite", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/YosemitePark2_amk.jpg/1280px-YosemitePark2_amk.jpg"},
+//   {name: "Sequoia", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Sequoiagrove2005.jpg/1024px-Sequoiagrove2005.jpg"},
+//   {name: "Ocean Beach", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Cliff_House_from_Ocean_Beach.jpg/350px-Cliff_House_from_Ocean_Beach.jpg"},
+//   {name: "Yosemite", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/YosemitePark2_amk.jpg/1280px-YosemitePark2_amk.jpg"},
+//   {name: "Sequoia", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Sequoiagrove2005.jpg/1024px-Sequoiagrove2005.jpg"},
+// function(err, campground){
 //       if(err){
 //         console.log(err);
 //       } else {
@@ -71,8 +77,6 @@ app.post("/campgrounds", function(req, res) {
         res.redirect("/campgrounds");
       }
   });
-  //redirect back to campgrounds page
-  res.redirect("/campgrounds");
 });
 
 app.get("/campgrounds/new", function(req, res){
