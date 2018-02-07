@@ -1,42 +1,16 @@
 var express = require("express");
 var app = express();
-
 var bodyParser = require("body-parser");
-
 var mongoose = require("mongoose");
+var Campground = require("./models/campground");
+var seedDB = require("./seeds")
+
+
+
 mongoose.connect("mongodb://localhost/yelp_camp");
-
-//SCHEMA Setup
-var campgroundSchema = new mongoose.Schema({
-    name: String,
-    image: String
-});
-
-var Campground = mongoose.model("Campground", campgroundSchema);
-
-// Campground.create(
-//   {
-//     name: "Yosemite",
-//     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/YosemitePark2_amk.jpg/1280px-YosemitePark2_amk.jpg"
-//   }, {name: "Ocean Beach", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Cliff_House_from_Ocean_Beach.jpg/350px-Cliff_House_from_Ocean_Beach.jpg"},
-//   {name: "Yosemite", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/YosemitePark2_amk.jpg/1280px-YosemitePark2_amk.jpg"},
-//   {name: "Sequoia", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Sequoiagrove2005.jpg/1024px-Sequoiagrove2005.jpg"},
-//   {name: "Ocean Beach", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Cliff_House_from_Ocean_Beach.jpg/350px-Cliff_House_from_Ocean_Beach.jpg"},
-//   {name: "Yosemite", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/YosemitePark2_amk.jpg/1280px-YosemitePark2_amk.jpg"},
-//   {name: "Sequoia", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Sequoiagrove2005.jpg/1024px-Sequoiagrove2005.jpg"},
-// function(err, campground){
-//       if(err){
-//         console.log(err);
-//       } else {
-//         console.log("NEWLY CREATED CAMPGROUND: ");
-//         console.log(campground);
-//       }
-//   });
-
-
 app.use(bodyParser.urlencoded({extended:true}));
-
 app.set("view engine", "ejs");
+seedDB();
 
 // var campGrounds = [
 //   {name: "Ocean Beach", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Cliff_House_from_Ocean_Beach.jpg/350px-Cliff_House_from_Ocean_Beach.jpg"},
@@ -48,26 +22,29 @@ app.set("view engine", "ejs");
 // ]
 
 app.get("/", function(req, res){
-  res.render("landing");
+    res.render("landing");
 });
 
+//INDEX - show all campgrounds
 app.get("/campgrounds", function(req, res){
   // Get all campgrounds from DB
   Campground.find({}, function(err, allCampgrounds){
     if(err) {
       console.log("err");
     } else {
-      res.render("campgrounds", {campgrounds: allCampgrounds});
+      res.render("index", {campgrounds: allCampgrounds});
     }
   });
 });
 
+//Create - add new campground to database
 app.post("/campgrounds", function(req, res) {
 
   //get data from form and add to campGrounds array
   var name = req.body.name;
   var image = req.body.image;
-  var newCampground = {name: name, image: image};
+  var desc = req.body.description
+  var newCampground = {name: name, image: image, description: desc};
   // create a new campground and save to DB
   Campground.create(newCampground, function(err, newlyCreated){
       if(err) {
@@ -79,10 +56,23 @@ app.post("/campgrounds", function(req, res) {
   });
 });
 
+//New - show form to create new campground
 app.get("/campgrounds/new", function(req, res){
-  res.render("new.ejs");
+    res.render("new.ejs");
 });
 
+//SHOW - shows more info about one campground
+app.get("/campgrounds/:id", function(req, res) {
+    //find the campground with provided ID
+    Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
+        if (err) {
+          console.log(err);
+        } else {
+          //render show template with that campground
+          res.render("show", {campground: foundCampground});
+        }
+    });
+});
 app.listen(3000, function(req, res){
-  console.log("YelpCamp server has started!");
+    console.log("YelpCamp server has started!");
 });
