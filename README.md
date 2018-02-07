@@ -1,7 +1,7 @@
 # YelpCamp
 #### A fullstack app.
 
-> A fullstack user authentication/todo app that allows users login/logout functionality which takes them to their very own todo app which implements CRUD functionality using MongoDB, (I intend to polish the Frontend and smoothe out the login functionality as soon as I finish other projects).
+> A fullstack app Yelp like app that implements CRUD functionality using MongoDB, RESTful routing, styles with Bootstrap and CSS3, JavaScript on the frontend, and authentication with passport.js.
 
 #### Docs for dependencies:
 * [express.js](https://expressjs.com "express")
@@ -13,7 +13,7 @@
 #### To download and run the project
 #### Fork or clone this repo
 #### Using Termial or command propt => within the directory you want to save the code, run the git command:
-`https://github.com/eternale88/Node-CRUD-App.git`
+`https://github.com/eternale88/YelpCamp.git`
 #### Then install the dependencies from the package.json using the command:
 `npm install`
 ####
@@ -23,7 +23,7 @@
 `mongod`
 ####
 > In the second tab run
-`nodemon`
+`nodemon` if you don't have nodemon installed use `node` command
 ####
 > In the browser type the following into the url to see the project:
 `localhost:3000`
