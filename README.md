@@ -4,7 +4,7 @@
 > A fullstack app Yelp like app that implements CRUD functionality using MongoDB, RESTful routing, styles with Bootstrap and CSS3, JavaScript on the frontend, and authentication with passport.js.
 
 #### Deployed to Heroku
-> https://fast-beach-12456.herokuapp.com/campgrounds
+> https://fast-beach-12456.herokuapp.com
 
 #### Docs for dependencies:
 * [express.js](https://expressjs.com "express")
