@@ -1,7 +1,7 @@
 # YelpCamp
 #### A fullstack app.
 
-> A fullstack app Yelp like app that implements CRUD functionality using MongoDB, RESTful API routing, styles with Bootstrap and CSS3, JavaScript on the frontend, and authentication with passport.js. User login/logout, and account creation.
+> A fullstack Yelp like app that implements CRUD functionality using MongoDB, RESTful API routing, styles with Bootstrap and CSS3, JavaScript on the frontend, and authentication with passport.js. User login/logout, and account creation.
 
 #### Deployed to Heroku
 > https://fast-beach-12456.herokuapp.com
