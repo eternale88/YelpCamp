@@ -3,8 +3,7 @@
 
 > A fullstack Yelp like app that implements CRUD functionality using MongoDB, RESTful API routing, styles with Bootstrap and CSS3, JavaScript and jQuery on the frontend, and authentication with passport.js. User login/logout, and account creation.
 
-#### Deployed to Heroku
-> https://fast-beach-12456.herokuapp.com
+No Longer hosted due to forced migration, from mLab to Atlas, as well as being forced to pay for db support
 
 #### Docs for dependencies:
 * [express.js](https://expressjs.com "express")
